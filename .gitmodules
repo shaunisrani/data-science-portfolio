@@ -1,0 +1,3 @@
+[submodule "dsc-projects"]
+	path = dsc-projects
+	url = https://github.com/shaunisrani/dsc-projects.git
