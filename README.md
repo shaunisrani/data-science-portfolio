@@ -1,33 +1,37 @@
 # Data Science Portfolio
 
-This repository showcases selected data science projects demonstrating
-skills in data analysis, statistical modeling, machine learning, and
-causal inference.
+Selected data science projects demonstrating rigorous data analysis, statistical reasoning, data engineering, and clear communication through reproducible artifacts.
 
 ## Featured Projects
 
-### Sleepiness & Health Indicators Analysis
-- Exploratory data analysis and missingness profiling
-- Correlation structure and group comparisons
-- Baseline predictive modeling for health-related signals  
-→ `projects/health_analytics/sleepiness-analysis/`
-
-### Data Wrangling & Data Product
-- Real-world data acquisition and cleaning
-- Validation, normalization, and reproducibility-focused workflows
-- Delivery of a structured dataset and data product  
+### League of Legends Gameplay Analysis: Wards vs. Dragons (DSC 80)
+**End-to-end data science project with modeling and deployment**
+- Data engineering and validation with explicit missingness analysis
+- Hypothesis testing, predictive analysis, and subgroup diagnostics
+- Results communicated via a deployed, web-based data product (GitHub Pages)
 → `projects/data_wrangling_web/dsc80-final-project/`
 
+### Sleepiness & Diagnostic Group Analysis (COGS 108)
+**Statistical analysis and data-quality–focused project**
+- Rigorous missingness investigation and bias assessment
+- Exploratory analysis and hypothesis testing across diagnostic groups
+- Emphasis on interpretability and responsible analysis of observational data
+→ `projects/health_analytics/sleepiness-analysis/`
 
-### Sensor / Time-Series Analysis
-- Time-series cleaning, feature extraction, and diagnostic visualization
-- Reporting-ready outputs         
+### Sensor-Based Time-Series Analysis (DSC 96)
+**Report-driven signal and time-series analysis**
+- Exploratory analysis of sensor data and temporal patterns
+- Feature reasoning and diagnostic visualization
+- Communicated findings through a structured analytical report
 → `projects/sensing_time_series/sensor-analysis/`
 
-## Coursework Projects 
-- [COGS9](./COGS9)
-- [DSC10](./DSC10)
-- [DSC20](./DSC20)
-- [DSC80](./DSC80)
-- [DSC96](./DSC96)
-- [COGS108](./COGS108)
+## Skills Demonstrated
+- Python, pandas, NumPy, Jupyter
+- Data cleaning, validation, and missingness analysis
+- Exploratory data analysis and statistical hypothesis testing
+- Predictive modeling and responsible subgroup evaluation
+- Communication of results via reports, notebooks, and deployed artifacts
+
+## Coursework Archive
+Original coursework and supporting materials:  
+→ `coursework/`
