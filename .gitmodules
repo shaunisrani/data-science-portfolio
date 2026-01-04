@@ -1,5 +1,5 @@
 [submodule "dsc-projects"]
-	path = DSC80/dsc80-finalprojwebsite
+	path = coursework/DSC80/dsc80-finalprojwebsite
 	url = https://github.com/shaunisrani/dsc80-proj.git
 [submodule "dsc80-finalprojwebsite"]
 	path = DSC80/finalproj-website
