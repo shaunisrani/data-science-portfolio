@@ -18,6 +18,12 @@ causal inference.
 - Delivery of a structured dataset and data product  
 → `projects/data_wrangling_web/dsc80-final-project/`
 
+
+### Sensor / Time-Series Analysis
+- Time-series cleaning, feature extraction, and diagnostic visualization
+- Reporting-ready outputs
+→ `projects/sensing_time_series/sensor-analysis/`
+
 ## Coursework Projects 
 - [COGS9](./COGS9)
 - [DSC10](./DSC10)
