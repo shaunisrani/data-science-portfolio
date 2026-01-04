@@ -26,7 +26,7 @@ Selected data science projects demonstrating rigorous data analysis, statistical
 → `projects/sensing_time_series/sensor-analysis/`
 
 ## Skills Demonstrated
-- Python, pandas, NumPy, Jupyter
+- Python, pandas, NumPy, scikit-learn, Jupyter
 - Data cleaning, validation, and missingness analysis
 - Exploratory data analysis and statistical hypothesis testing
 - Predictive modeling and responsible subgroup evaluation
