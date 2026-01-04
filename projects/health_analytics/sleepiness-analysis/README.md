@@ -21,45 +21,32 @@ Investigate how sleepiness-related measures and demographic/health variables rel
 
 ## Methods & Skills Demonstrated
 
-### Data Engineering & Cleaning
+### Data Cleaning & Engineering
 - Validation of feature types, ranges, and consistency
-- Reproducible preprocessing decisions documented across checkpoints
-- Structured workflow supporting iterative analysis
+- Transparent preprocessing decisions documented across project checkpoints
+- Reproducible notebook-based workflow
 
 ### Missingness Analysis
 - Quantified missingness across features
-- Compared outcome distributions for missing vs. non-missing cohorts
-- Tested associations between missingness and the prediction target
-- Assessed potential bias introduced by missing data handling choices
+- Compared distributions of key variables between missing and non-missing cohorts
+- Tested associations between missingness and diagnostic group
+- Assessed potential bias introduced by different missing-data handling choices
 
 ### Exploratory Analysis
 - Distributional analysis of sleepiness and health variables
 - Correlation analysis among numeric features
 - Group-wise comparisons stratified by diagnostic label
-- Visualization-driven reasoning to motivate downstream tests and models
+- Visualization-driven reasoning to motivate downstream statistical tests
 
 ### Statistical Hypothesis Testing
-- Formulated hypotheses regarding diagnostic group differences
-- Applied appropriate statistical tests based on variable type and distribution
-- Interpreted results with attention to effect size, uncertainty, and limitations
-
-### Predictive Modeling
-- Built a baseline classification model to predict diagnostic group
-- Performed train/test splitting and evaluated model performance
-- Interpreted model behavior and feature contributions
-- Framed modeling results as signal evaluation rather than deployment
-
-### Subgroup / Fairness Diagnostics
-- Evaluated model performance across demographic subgroups
-- Compared error rates and predictive behavior between groups
-- Used subgroup results to assess potential bias and generalizability
-- Avoided causal overclaims; analysis framed diagnostically
+- Formulated hypotheses regarding differences between diagnostic groups
+- Selected appropriate statistical tests based on variable type and distribution
+- Interpreted results with attention to effect direction, uncertainty, and limitations
 
 ## Key Findings
-- Sleepiness-related measures showed meaningful associations with diagnostic group membership.
+- Sleepiness-related measures exhibited meaningful differences across diagnostic groups.
 - Missingness was not random for key variables and required explicit consideration.
-- Predictive models captured interpretable signal but exhibited limitations consistent with observational data.
-- Subgroup analyses highlighted areas where model performance differed, informing responsible interpretation.
+- Group-level statistical comparisons revealed patterns consistent with existing domain expectations, while highlighting limitations of observational data.
 
 ## Artifacts
 - `notebooks/` — proposal, checkpoints, and final analysis notebooks
