@@ -1,8 +1,5 @@
 [submodule "dsc-projects"]
 	path = DSC80/dsc80-finalprojwebsite
 	url = https://github.com/shaunisrani/dsc80-proj.git
-[submodule "cogs108_group108_fa25"]
-	path = COGS108/group108_fa25
-	url = https://github.com/shaunisrani/cogs108_group108_fa25.git
 [submodule "dsc80-finalprojwebsite"]
 	path = DSC80/finalproj-website
