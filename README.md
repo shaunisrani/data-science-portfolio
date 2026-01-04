@@ -6,6 +6,13 @@ causal inference.
 
 ## Featured Projects
 
+### Sleepiness & Health Indicators Analysis
+- Exploratory data analysis and missingness profiling
+- Correlation structure and group comparisons
+- Baseline predictive modeling for health-related signals  
+→ `projects/health_analytics/sleepiness-analysis/`
+
+
 ### Causal Impact of Pricing on User Conversion
 - Designed a quasi-experimental analysis using observational data
 - Applied regression adjustment and propensity score matching
