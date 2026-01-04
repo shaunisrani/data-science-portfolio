@@ -1,7 +1,7 @@
 # Sleepiness & Health Indicators Analysis (COGS 108)
 
 ## Objective
-Investigate relationships between sleepiness-related measures and demographic or health indicators, and evaluate whether these variables support baseline predictive signals for identifying high-risk or diagnostically relevant groups.
+Investigate relationships between sleep quaity measures and neurodegenerative diseases such as Parkinson's and Alzheimer's, and evaluate whether these variables support baseline predictive signals for identifying high-risk or diagnostically relevant groups.
 
 ## Data
 - Observational, tabular dataset used in the COGS 108 final project.
