@@ -1,30 +1,54 @@
-# Data Wrangling & Data Product (DSC 80)
+# League of Legends Gameplay Analysis: Wards vs. Dragons (DSC 80)
 
 ## Objective
-Design and implement an end-to-end data workflow that acquires real-world data, cleans and validates it, and produces an analysis-ready dataset and user-facing data product.
+Analyze competitive League of Legends match data to investigate how strategic behaviors—specifically vision control (wards placed) versus objective control (dragons taken)—relate to game outcomes and performance metrics. The project evaluates both statistical relationships and predictive signals while accounting for missing data and subgroup effects.
 
 ## Data
-- Real-world dataset(s) used in the DSC 80 final project.
-- Data acquired from external sources and characterized by missing values, inconsistent formatting, and validation challenges.
+- Match-level competitive League of Legends data.
+- Features include objective counts (e.g., dragons), vision metrics (wards placed), game duration, and outcome variables.
+- Dataset contains structured missingness requiring explicit analysis rather than naive deletion.
 
 ## Methods & Skills Demonstrated
-- Data acquisition and ingestion from raw sources
-- Data cleaning, normalization, and schema validation
-- Feature construction and reshaping for analysis
-- Modular code organization for reproducibility
-- Creation of a final deliverable (report and/or lightweight website)
+
+### Data Engineering & Validation
+- Data ingestion and schema validation
+- Explicit missingness analysis, including:
+  - Identification of missingness patterns
+  - Comparison of distributions between missing and non-missing groups
+- Feature construction and transformation for downstream analysis
+
+### Exploratory & Statistical Analysis
+- Exploratory data analysis using distributions and visual summaries
+- Hypothesis testing to evaluate differences between strategic behaviors
+- Group-wise comparisons to assess how strategy correlates with outcomes
+
+### Predictive Analysis
+- Construction of baseline predictive models to estimate outcome likelihood
+- Evaluation of model behavior across different feature subsets
+- Interpretation of predictive signals rather than pure optimization
+
+### Fairness / Subgroup Analysis
+- Subgroup comparisons to examine whether relationships differ across:
+  - Game length
+  - Strategy emphasis (vision-heavy vs. objective-heavy playstyles)
+- Analysis framed to detect asymmetric effects rather than claim causal fairness guarantees
+
+### Communication & Deployment
+- Generation of static, interactive visualizations
+- Deployment of analysis results as a web-based data product using GitHub Pages
+- Clear narrative documentation explaining analytical decisions and results
 
 ## Results
-- Produced a clean, structured dataset suitable for downstream analysis.
-- Validated data integrity through systematic checks and exploratory summaries.
-- Delivered a final data product demonstrating the cleaned data and key insights.
+- Identified measurable relationships between vision control, objective control, and game outcomes.
+- Demonstrated that strategic emphasis correlates differently with outcomes depending on game context.
+- Predictive models provided interpretable baseline signals linking in-game behavior to results.
+- Web-based artifacts allow exploration of missingness effects and distributional differences.
 
 ## Artifacts
-- `notebooks/` — exploratory and validation workflows
-- `src/` — reusable data processing utilities
-- `site/` — final data product (if applicable)
+- `notebooks/` — exploratory analysis, missingness evaluation, hypothesis testing, and modeling
+- `src/` — reusable analysis and data processing code
+- `site/` — deployed interactive visualizations (GitHub Pages)
 - Project report (PDF), if included
 
 ## Notes
-This project emphasizes data engineering fundamentals and reproducibility rather than predictive modeling.
-
+This project emphasizes methodological rigor, interpretability, and responsible analysis over leaderboard-style model tuning.
