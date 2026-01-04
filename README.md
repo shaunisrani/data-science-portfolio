@@ -19,9 +19,9 @@ causal inference.
 → `projects/prediction/housing_prices/`
 
 ## Coursework Projects 
+- [COGS9](./COGS9)
 - [DSC10](./DSC10)
 - [DSC20](./DSC20)
 - [DSC80](./DSC80)
-- [COGS9](./COGS9)
-- [COGS108](./COGS108)
 - [DSC96](./DSC96)
+- [COGS108](./COGS108)
