@@ -1,22 +1,27 @@
-# Sensor / Time-Series Analysis (DSC 96)
+# Sensor-Based Time-Series Analysis (DSC 96)
 
 ## Objective
-Analyze sensor-based data to identify structure over time and extract interpretable signals relevant to monitoring, diagnostics, or event detection.
+Analyze sensor-derived data to characterize temporal structure, identify meaningful signal patterns, and support interpretation relevant to monitoring or diagnostic contexts.
 
 ## Data
-- Sensor measurements provided as part of the DSC 96 coursework.
-- Time-indexed or sequential observations analyzed as a time series.
+- Sensor measurements provided as part of DSC 96 coursework.
+- Time-indexed or sequential observations representing physical or environmental signals.
 
 ## Methods & Skills Demonstrated
-- Time-series preprocessing and exploratory analysis
-- Feature extraction from sensor signals
-- Diagnostic visualization for temporal patterns and anomalies
-- Interpretation of results in a reporting context
+- Time-series preprocessing and signal inspection
+- Feature extraction from sensor signals (e.g., summary statistics, temporal patterns)
+- Diagnostic visualization for understanding trends, variability, and anomalies
+- Analytical reasoning focused on interpretability rather than black-box prediction
+- Clear written communication of methods and findings
 
 ## Results
-- The attached report presents the full analysis, figures, and conclusions.
-- Key results include identified temporal patterns and signal characteristics relevant to the problem context.
+- Identified interpretable temporal patterns in sensor measurements.
+- Extracted signal characteristics relevant to the problem context.
+- Presented results through figures and narrative analysis in a structured report.
 
 ## Artifact
-- `DSC 96 sensor1_analysis-project (4).pdf` — final project report
+- `DSC 96 sensor1_analysis-project (4).pdf` — final project report containing methodology, figures, and conclusions
+
+## Notes
+This project emphasizes signal understanding, feature reasoning, and interpretability over end-to-end model deployment.
 
