@@ -21,7 +21,7 @@ causal inference.
 
 ### Sensor / Time-Series Analysis
 - Time-series cleaning, feature extraction, and diagnostic visualization
-- Reporting-ready outputs
+- Reporting-ready outputs         
 → `projects/sensing_time_series/sensor-analysis/`
 
 ## Coursework Projects 
