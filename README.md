@@ -12,18 +12,11 @@ causal inference.
 - Baseline predictive modeling for health-related signals  
 → `projects/health_analytics/sleepiness-analysis/`
 
-
-### Causal Impact of Pricing on User Conversion
-- Designed a quasi-experimental analysis using observational data
-- Applied regression adjustment and propensity score matching
-- Interpreted results with business implications  
-→ `projects/causal_inference/pricing_conversion/`
-
-### Predicting Housing Prices
-- Built regression and tree-based models
-- Performed feature engineering and cross-validation
-- Evaluated performance using RMSE  
-→ `projects/prediction/housing_prices/`
+### Data Wrangling & Data Product
+- Real-world data acquisition and cleaning
+- Validation, normalization, and reproducibility-focused workflows
+- Delivery of a structured dataset and data product  
+→ `projects/data_wrangling_web/dsc80-final-project/`
 
 ## Coursework Projects 
 - [COGS9](./COGS9)
