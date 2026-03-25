@@ -1,4 +1,4 @@
-#Exploratory Data Analysis: [Top 10 Countries by Population over Time]
+## Exploratory Data Analysis: [Top 10 Countries by Population over Time]
 
 Short EDA project focused on exploring patterns, trends, and relationships in the dataset through cleaning, summary statistics, and visualization.
 
