@@ -18,4 +18,4 @@ This project uses exploratory data analysis to better understand the structure o
 - Google Colab
 
 ## Link
-https://colab.research.google.com/drive/10SNJEdNY1tOGvVvv1TNqWx7IkHEX1dlT?usp=sharing
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](PASTE_YOUR_COLAB_LINK_HERE)
