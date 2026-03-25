@@ -3,7 +3,8 @@
 Short EDA project focused on exploring patterns, trends, and relationships in the dataset through cleaning, summary statistics, and visualization.
 
 ## Overview
-This project uses exploratory data analysis to better understand the structure of the data and identify meaningful insights before modeling.
+This project uses exploratory data analysis to better understand the structure of the data and identify meaningful insights before modeling. From a population csv file, plotted the population of the top 10 countries over time with trends and forecasting using basic EDA, data wrangling, data cleaning. 
+
 
 ## What I did
 - Cleaned and inspected the dataset
