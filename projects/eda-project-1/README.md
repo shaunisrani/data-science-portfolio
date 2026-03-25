@@ -1,6 +1,6 @@
 ## Exploratory Data Analysis: [Top 10 Countries by Population over Time]
 
-Short EDA project focused on exploring patterns, trends, and relationships in the dataset through cleaning, summary statistics, and visualization.
+Short EDA project focused on exploring patterns, trends, and relationships in the dataset through cleaning, summary statistics, and visualization. (2025 summer)
 
 ## Overview
 This project uses exploratory data analysis to better understand the structure of the data and identify meaningful insights before modeling. From a population csv file, plotted the population of the top 10 countries over time with trends and forecasting using basic EDA, data wrangling, data cleaning. 
