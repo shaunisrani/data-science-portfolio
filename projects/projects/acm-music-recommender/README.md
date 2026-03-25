@@ -20,6 +20,6 @@ This project used a Kaggle resume dataset to build a music recommendation system
 - Kaggle dataset
 
 ## Project Link
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1xm5iZRMK8E7okOfSfCvdIVkcNaSkZFe8?usp=sharing
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1xm5iZRMK8E7okOfSfCvdIVkcNaSkZFe8?usp=sharing)
 
 
