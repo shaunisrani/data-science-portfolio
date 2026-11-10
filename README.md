@@ -7,7 +7,7 @@ Selected data science projects demonstrating rigorous data analysis, statistical
 ### FabLens: Semiconductor Yield RAG Assistant + Agent
 **LangChain RAG app and tool-calling agent with cited answers**
 - Hybrid BM25 + FAISS retrieval; Claude or Mistral answers only from retrieved context
-- Agent with tested tools: yield models (Poisson, Murphy, negative binomial), dies per wafer, Cpk
+- Agents in LangChain and Semantic Kernel (Azure OpenAI) with tested tools: yield models, dies per wafer, Cpk
 - Query logging for auditability; pytest + GitHub Actions CI with a retrieval quality gate
 - Roadmap: public demo on Hugging Face Spaces
 → `projects/ai_llm/fablens/`

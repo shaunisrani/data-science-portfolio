@@ -11,8 +11,9 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 DOCS_DIR = Path(__file__).parent / "docs"
 EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-LLM_PROVIDER = os.getenv("LLM_PROVIDER", "").lower()  # "anthropic", "mistral", or "" = auto
-DEFAULT_MODELS = {"anthropic": "claude-haiku-4-5", "mistral": "mistral-small-latest"}
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "").lower()  # "anthropic", "mistral", "azure", or "" = auto
+DEFAULT_MODELS = {"anthropic": "claude-haiku-4-5", "mistral": "mistral-small-latest",
+                  "azure": os.getenv("AZURE_OPENAI_DEPLOYMENT", "gpt-4o-mini")}
 
 SYSTEM_PROMPT = (
     "You are FabLens, an assistant for semiconductor manufacturing and yield engineering. "
@@ -108,6 +109,8 @@ def pick_provider():
     """Choose the LLM provider: explicit LLM_PROVIDER, else whichever API key is set."""
     if LLM_PROVIDER in DEFAULT_MODELS:
         return LLM_PROVIDER
+    if os.getenv("AZURE_OPENAI_API_KEY") and os.getenv("AZURE_OPENAI_ENDPOINT"):
+        return "azure"
     if os.getenv("MISTRAL_API_KEY"):
         return "mistral"
     if os.getenv("ANTHROPIC_API_KEY"):
@@ -117,6 +120,11 @@ def pick_provider():
 
 def get_llm(provider):
     model = os.getenv("LLM_MODEL", DEFAULT_MODELS[provider])
+    if provider == "azure":  # Azure OpenAI deployment in Azure AI Foundry
+        from langchain_openai import AzureChatOpenAI
+
+        return AzureChatOpenAI(azure_deployment=model, api_version=os.getenv("AZURE_OPENAI_API_VERSION", "2024-10-21"),
+                               temperature=0, max_tokens=600)
     if provider == "mistral":
         from langchain_mistralai import ChatMistralAI
 
