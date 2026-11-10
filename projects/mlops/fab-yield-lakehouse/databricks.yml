@@ -1,0 +1,51 @@
+# Databricks Asset Bundle: deploys the 4 notebooks as one job on Azure Databricks.
+#   databricks bundle validate -t dev
+#   databricks bundle deploy  -t dev
+#   databricks bundle run fab_yield_pipeline -t dev
+bundle:
+  name: fab-yield-lakehouse
+
+variables:
+  lake_root:
+    description: ADLS Gen2 path for bronze/silver/gold Delta tables
+    default: abfss://lake@<storage-account>.dfs.core.windows.net/fab-yield
+  raw_root:
+    description: Folder (Unity Catalog volume or ADLS) holding secom.data and secom_labels.data
+    default: /Volumes/main/fab_yield/raw
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://adb-<workspace-id>.<n>.azuredatabricks.net
+
+resources:
+  jobs:
+    fab_yield_pipeline:
+      name: fab-yield-pipeline
+      job_clusters:
+        - job_cluster_key: small
+          new_cluster:
+            spark_version: 15.4.x-cpu-ml-scala2.12
+            node_type_id: Standard_D4ds_v5
+            num_workers: 1
+            spark_env_vars:
+              LAKE_ROOT: ${var.lake_root}
+              RAW_ROOT: ${var.raw_root}
+      tasks:
+        - task_key: bronze
+          job_cluster_key: small
+          notebook_task: {notebook_path: ./notebooks/01_bronze_ingest.py}
+        - task_key: silver
+          depends_on: [{task_key: bronze}]
+          job_cluster_key: small
+          notebook_task: {notebook_path: ./notebooks/02_silver_quality.py}
+        - task_key: gold
+          depends_on: [{task_key: silver}]
+          job_cluster_key: small
+          notebook_task: {notebook_path: ./notebooks/03_gold_features.py}
+        - task_key: train
+          depends_on: [{task_key: gold}]
+          job_cluster_key: small
+          notebook_task: {notebook_path: ./notebooks/04_train_mlflow.py}

@@ -1,0 +1,14 @@
+{
+  "rows": 1567,
+  "sensors_in": 590,
+  "sensors_kept": 562,
+  "dropped_mostly_missing": 28,
+  "dropped_constant": 0,
+  "fail_rate": 0.0664,
+  "checks": {
+    "row_count_is_1567": true,
+    "labels_are_binary": true,
+    "no_null_timestamps": true,
+    "wafer_id_unique": true
+  }
+}
