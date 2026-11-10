@@ -7,7 +7,7 @@ Predicts failing wafers from real semiconductor fab sensor data (UCI SECOM: 1,56
 ```
 raw SECOM files
   → 01 Bronze  ingest as-is + lineage columns (source, ingest time)
-  → 02 Silver  data-quality checks (stop the run if broken) + cleaning, logged to reports/data_quality.json
+  → 02 Silver  data-quality checks (stop the run if broken) + drop unusable sensors, logged to reports/data_quality.json
   → 03 Gold    model-ready table with a time-based train/test split (no future data in training)
   → 04 Train   2 models tracked in MLflow; best one registered in the model registry
 ```
@@ -25,7 +25,8 @@ Runs the same code in two places:
 ## Governance
 
 - **Data quality gates**: row count, binary labels, no missing timestamps, unique wafer IDs. The pipeline stops if any fail.
-- **Every cleaning decision is recorded**: 28 of 590 sensors dropped for >50% missing values; the rest median-imputed.
+- **Every cleaning decision is recorded**: 28 of 590 sensors dropped for >50% missing values.
+- **No test leakage**: missing values are imputed inside the model pipeline using training wafers only (fix from PR #1 code review).
 - **Lineage**: every MLflow run is tagged with its source data and gold table; models are saved with an input/output signature and registered with a version number.
 - **Safe model serialization**: models are saved with MLflow's skops format, trusting only the one sklearn type we trained ourselves.
 
@@ -34,7 +35,7 @@ Runs the same code in two places:
 | Model | ROC-AUC | PR-AUC | Fails caught reviewing riskiest 10% |
 |---|---|---|---|
 | Logistic regression (registered) | 0.67 | 0.10 | 21% (2× random) |
-| Gradient boosting | 0.61 | 0.08 | 13% |
+| Gradient boosting | 0.54 | 0.07 | 8% |
 
 Random guessing gives PR-AUC ≈ 0.06 and catches 10% of fails. SECOM is a known hard dataset (few fails, noisy sensors), so the honest result is a modest lift. Next steps: feature selection, sensor-drift features, and threshold tuning with fab cost-of-miss vs. cost-of-review.
 

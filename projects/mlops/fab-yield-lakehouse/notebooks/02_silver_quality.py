@@ -1,7 +1,8 @@
 # Databricks notebook source
 # MAGIC %md
 # MAGIC # 02 Silver: data quality checks and cleaning
-# MAGIC Drops sensors that are mostly missing or constant, imputes the rest with medians, and records every decision in a quality report.
+# MAGIC Drops sensors that are mostly missing or constant and records every decision in a quality report.
+# MAGIC Missing values stay null here; they are imputed inside the model pipeline using training wafers only (no test leakage).
 
 # COMMAND ----------
 import json, os, sys
@@ -35,9 +36,7 @@ def clean(df):
     drop_missing = [c for c in sensors if missing[c] > MAX_MISSING]
     drop_constant = [c for c in sensors if c not in drop_missing and (stds[c] is None or stds[c] == 0)]
     keep = [c for c in sensors if c not in drop_missing + drop_constant]
-    medians = dict(zip(keep, df.approxQuantile(keep, [0.5], 0.001)))
-    medians = {c: (v[0] if v else 0.0) for c, v in medians.items()}
-    silver = df.select("wafer_id", "event_ts", "fail", *keep).na.fill(medians)
+    silver = df.select("wafer_id", "event_ts", "fail", *keep)
     report = {"rows": n, "sensors_in": len(sensors), "sensors_kept": len(keep),
               "dropped_mostly_missing": len(drop_missing), "dropped_constant": len(drop_constant),
               "fail_rate": round(df.filter("fail = 1").count() / n, 4)}

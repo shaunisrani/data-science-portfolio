@@ -10,6 +10,7 @@ import mlflow
 import numpy as np
 from mlflow.models import infer_signature
 from sklearn.ensemble import HistGradientBoostingClassifier
+from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import average_precision_score, roc_auc_score
 from sklearn.pipeline import make_pipeline
@@ -19,10 +20,12 @@ from common import ON_DATABRICKS, PROJECT, get_spark, read, table_path
 MODEL_NAME = "fab_yield_fail_classifier"
 FLAG_SHARE = 0.10  # flag the riskiest 10% of wafers for engineer review
 # Types we trained ourselves and trust when saving with MLflow's safe (skops) serializer
-TRUSTED = {"hist_gradient_boosting": ["sklearn.ensemble._hist_gradient_boosting.predictor.TreePredictor"]}
+TRUSTED = {"hist_gradient_boosting": ["sklearn.ensemble._hist_gradient_boosting.predictor.TreePredictor"],
+           "logistic_regression": ["numpy.dtype"]}  # SimpleImputer stores its fitted dtype
 
 MODELS = {
-    "logistic_regression": lambda: make_pipeline(StandardScaler(), LogisticRegression(C=0.01, class_weight="balanced", max_iter=2000)),
+    # Imputers are fit on training wafers only, so test data never shapes the features
+    "logistic_regression": lambda: make_pipeline(SimpleImputer(strategy="median"), StandardScaler(), LogisticRegression(C=0.01, class_weight="balanced", max_iter=2000)),
     "hist_gradient_boosting": lambda: HistGradientBoostingClassifier(max_depth=3, learning_rate=0.05, max_iter=200,
                                                                      class_weight="balanced", random_state=7),
 }

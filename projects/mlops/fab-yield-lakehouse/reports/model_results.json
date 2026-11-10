@@ -3,15 +3,15 @@
   "registered": "fab_yield_fail_classifier v1",
   "results": {
     "logistic_regression": {
-      "roc_auc": 0.671,
-      "pr_auc": 0.101,
+      "roc_auc": 0.67,
+      "pr_auc": 0.1,
       "recall_at_top10pct": 0.208,
       "fail_rate": 0.061
     },
     "hist_gradient_boosting": {
-      "roc_auc": 0.612,
-      "pr_auc": 0.084,
-      "recall_at_top10pct": 0.125,
+      "roc_auc": 0.54,
+      "pr_auc": 0.065,
+      "recall_at_top10pct": 0.083,
       "fail_rate": 0.061
     }
   }

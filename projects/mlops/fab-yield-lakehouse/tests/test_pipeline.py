@@ -36,9 +36,7 @@ def test_bronze_silver_gold(spark):
     assert all(checks.values())
     silver, report = silver_mod.clean(bronze)
     assert report["sensors_kept"] < 590 and report["dropped_mostly_missing"] > 0
-    sensor_cols = [c for c in silver.columns if c.startswith("s") and c[1:].isdigit()]
     from pyspark.sql import functions as F
-    assert silver.select([F.sum(F.col(c).isNull().cast("int")) for c in sensor_cols[:20]]).first() == tuple([0] * 20)
     gold = load("03_gold_features").build_gold(silver)
     train_max = gold.filter("split = 'train'").agg(F.max("event_ts")).first()[0]
     test_min = gold.filter("split = 'test'").agg(F.min("event_ts")).first()[0]
@@ -59,3 +57,10 @@ def test_flagged_recall():
     y = np.array([1, 0, 0, 0, 0, 0, 0, 0, 0, 1])
     s = np.array([.9, .1, .1, .1, .1, .1, .1, .1, .1, .2])
     assert fr(y, s, share=0.1) == 0.5
+
+
+def test_imputer_is_fit_on_train_only():
+    """Regression test for PR #1 review: imputation must live inside the model pipeline."""
+    from sklearn.impute import SimpleImputer
+    lr = load("04_train_mlflow").MODELS["logistic_regression"]()
+    assert isinstance(lr.steps[0][1], SimpleImputer)
