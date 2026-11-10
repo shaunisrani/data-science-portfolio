@@ -126,13 +126,14 @@ def write_reports(out_dir, app_name, suite, rows, m, regressions):
     out.mkdir(parents=True, exist_ok=True)
     (out / "results.json").write_text(json.dumps({"app": app_name, "suite": suite["suite"], "metrics": m,
                                                    "regressions": regressions, "cases": rows}, indent=2))
+    mrr_s = "n/a" if m["mrr"] is None else f"{m['mrr']:.2f}"
     fails = [r for r in rows if r.get("correctness", 1) < 1 or r.get("retrieval_hit", 1) < 1 or r.get("refusal", 1) < 1]
     lines = [
         f"# Scorecard: {app_name}", "", f"Suite: {suite['suite']} · {len(rows)} cases", "",
         f"**Overall: {m['overall']:.0f}/100 (grade {m['grade']}) — {'PASS' if m['passed'] else 'FAIL'}**", "",
         "| Metric | Score | Gate |", "|---|---|---|",
         f"| Retrieval hit@k | {pct(m['retrieval'])} | {'≥' + pct(GATES['retrieval'])} |",
-        f"| MRR | {'n/a' if m['mrr'] is None else f'{m['mrr']:.2f}'} | — |",
+        f"| MRR | {mrr_s} | — |",
         f"| Answer correctness | {pct(m['correctness'])} | {'≥' + pct(GATES['correctness'])} |",
         f"| Correct refusals (unanswerable) | {pct(m['refusal'])} | {'≥' + pct(GATES['refusal'])} |",
         f"| False refusals (answerable) | {pct(m['false_refusal_rate'])} | — |",
@@ -158,6 +159,7 @@ def render_html(app_name, suite, rows, m, regressions, fails):
                 f'<div class="fill {"ok" if ok else "bad"}" style="width:{v * 100:.0f}%"></div>{mark}</div>'
                 f'<span class="val">{v:.0%}</span></div>')
 
+    mrr_s = "n/a" if m["mrr"] is None else f"{m['mrr']:.2f}"
     fail_rows = "".join(f"<tr><td>{r['id']}</td><td>{r['category']}</td><td>{r['question']}</td>"
                         f"<td>{', '.join(r.get('missing', [])) or '—'}</td></tr>" for r in fails) or \
         "<tr><td colspan=4>None</td></tr>"
@@ -181,7 +183,7 @@ table{{border-collapse:collapse;width:100%}}td,th{{border-bottom:1px solid var(-
 {bar('Answer correctness', m['correctness'], GATES['correctness'])}
 {bar('Correct refusals', m['refusal'], GATES['refusal'])}
 {bar('Cites sources', m['citation'])}
-<p class="mute">Vertical line = quality gate. MRR {'n/a' if m['mrr'] is None else f"{m['mrr']:.2f}"} · false refusals {pct(m['false_refusal_rate'])} · latency p50 {m['latency_p50_s']:.2f}s</p>
+<p class="mute">Vertical line = quality gate. MRR {mrr_s} · false refusals {pct(m['false_refusal_rate'])} · latency p50 {m['latency_p50_s']:.2f}s</p>
 {'<h2>Regressions vs. baseline</h2><ul>' + reg + '</ul>' if regressions else ''}
 <h2>Failed cases</h2><table><tr><th>ID</th><th>Category</th><th>Question</th><th>Missing</th></tr>{fail_rows}</table>
 </body></html>"""
