@@ -1,0 +1,272 @@
+{
+  "app": "fablens-rag",
+  "suite": "FabLens semiconductor Q&A",
+  "metrics": {
+    "retrieval": 1.0,
+    "mrr": 0.8055555555555556,
+    "correctness": 0.9444444444444444,
+    "refusal": 0.0,
+    "citation": 1.0,
+    "false_refusal_rate": 0.0,
+    "latency_p50_s": 0.0001283884048461914,
+    "latency_max_s": 0.004397392272949219,
+    "latency": 0.9999743223190307,
+    "overall": 78.05529877874586,
+    "grade": "C",
+    "gates": {
+      "retrieval": true,
+      "correctness": true,
+      "refusal": false
+    },
+    "passed": false
+  },
+  "regressions": [],
+  "cases": [
+    {
+      "id": "yield-01",
+      "category": "answerable",
+      "latency_s": 0.004397392272949219,
+      "correctness": 1.0,
+      "missing": [],
+      "retrieval_hit": 1.0,
+      "reciprocal_rank": 1.0,
+      "cited": 1.0,
+      "false_refusal": 0.0,
+      "question": "What does the alpha parameter mean in the Stapper yield model?"
+    },
+    {
+      "id": "yield-02",
+      "category": "answerable",
+      "latency_s": 0.00034928321838378906,
+      "correctness": 1.0,
+      "missing": [],
+      "retrieval_hit": 1.0,
+      "reciprocal_rank": 1.0,
+      "cited": 1.0,
+      "false_refusal": 0.0,
+      "question": "Why are large dies more sensitive to defect density?"
+    },
+    {
+      "id": "yield-03",
+      "category": "answerable",
+      "latency_s": 0.00014543533325195312,
+      "correctness": 1.0,
+      "missing": [],
+      "retrieval_hit": 1.0,
+      "reciprocal_rank": 1.0,
+      "cited": 1.0,
+      "false_refusal": 0.0,
+      "question": "What is the Poisson yield formula?"
+    },
+    {
+      "id": "litho-01",
+      "category": "answerable",
+      "latency_s": 0.00014352798461914062,
+      "correctness": 1.0,
+      "missing": [],
+      "retrieval_hit": 1.0,
+      "reciprocal_rank": 1.0,
+      "cited": 1.0,
+      "false_refusal": 0.0,
+      "question": "What wavelength does EUV lithography use?"
+    },
+    {
+      "id": "litho-02",
+      "category": "answerable",
+      "latency_s": 0.0001628398895263672,
+      "correctness": 1.0,
+      "missing": [],
+      "retrieval_hit": 1.0,
+      "reciprocal_rank": 1.0,
+      "cited": 1.0,
+      "false_refusal": 0.0,
+      "question": "How is EUV light generated?"
+    },
+    {
+      "id": "litho-03",
+      "category": "answerable",
+      "latency_s": 0.00014638900756835938,
+      "correctness": 1.0,
+      "missing": [],
+      "retrieval_hit": 1.0,
+      "reciprocal_rank": 1.0,
+      "cited": 1.0,
+      "false_refusal": 0.0,
+      "question": "What numerical aperture does High-NA EUV use?"
+    },
+    {
+      "id": "litho-04",
+      "category": "answerable",
+      "latency_s": 0.00013947486877441406,
+      "correctness": 1.0,
+      "missing": [],
+      "retrieval_hit": 1.0,
+      "reciprocal_rank": 1.0,
+      "cited": 1.0,
+      "false_refusal": 0.0,
+      "question": "Why does EUV use mirrors instead of lenses?"
+    },
+    {
+      "id": "metro-01",
+      "category": "answerable",
+      "latency_s": 0.00018596649169921875,
+      "correctness": 1.0,
+      "missing": [],
+      "retrieval_hit": 1.0,
+      "reciprocal_rank": 0.5,
+      "cited": 1.0,
+      "false_refusal": 0.0,
+      "question": "What is a focus-exposure matrix used for?"
+    },
+    {
+      "id": "metro-02",
+      "category": "answerable",
+      "latency_s": 0.00011134147644042969,
+      "correctness": 1.0,
+      "missing": [],
+      "retrieval_hit": 1.0,
+      "reciprocal_rank": 0.5,
+      "cited": 1.0,
+      "false_refusal": 0.0,
+      "question": "What is overlay error?"
+    },
+    {
+      "id": "defect-01",
+      "category": "answerable",
+      "latency_s": 0.00010466575622558594,
+      "correctness": 1.0,
+      "missing": [],
+      "retrieval_hit": 1.0,
+      "reciprocal_rank": 0.5,
+      "cited": 1.0,
+      "false_refusal": 0.0,
+      "question": "What are stochastic defects in EUV?"
+    },
+    {
+      "id": "defect-02",
+      "category": "answerable",
+      "latency_s": 0.000125885009765625,
+      "correctness": 1.0,
+      "missing": [],
+      "retrieval_hit": 1.0,
+      "reciprocal_rank": 0.5,
+      "cited": 1.0,
+      "false_refusal": 0.0,
+      "question": "What is a killer defect?"
+    },
+    {
+      "id": "wafer-01",
+      "category": "answerable",
+      "latency_s": 0.00013947486877441406,
+      "correctness": 0.0,
+      "missing": [
+        "scratch"
+      ],
+      "retrieval_hit": 1.0,
+      "reciprocal_rank": 1.0,
+      "cited": 1.0,
+      "false_refusal": 0.0,
+      "question": "What wafer map pattern points to a CMP problem?"
+    },
+    {
+      "id": "wafer-02",
+      "category": "answerable",
+      "latency_s": 0.00012826919555664062,
+      "correctness": 1.0,
+      "missing": [],
+      "retrieval_hit": 1.0,
+      "reciprocal_rank": 0.5,
+      "cited": 1.0,
+      "false_refusal": 0.0,
+      "question": "How many wafer maps are in WM-811K?"
+    },
+    {
+      "id": "spc-01",
+      "category": "answerable",
+      "latency_s": 9.72747802734375e-05,
+      "correctness": 1.0,
+      "missing": [],
+      "retrieval_hit": 1.0,
+      "reciprocal_rank": 1.0,
+      "cited": 1.0,
+      "false_refusal": 0.0,
+      "question": "How is Cpk calculated?"
+    },
+    {
+      "id": "spc-02",
+      "category": "answerable",
+      "latency_s": 0.00010800361633300781,
+      "correctness": 1.0,
+      "missing": [],
+      "retrieval_hit": 1.0,
+      "reciprocal_rank": 0.5,
+      "cited": 1.0,
+      "false_refusal": 0.0,
+      "question": "What is virtual metrology?"
+    },
+    {
+      "id": "equip-01",
+      "category": "answerable",
+      "latency_s": 9.608268737792969e-05,
+      "correctness": 1.0,
+      "missing": [],
+      "retrieval_hit": 1.0,
+      "reciprocal_rank": 1.0,
+      "cited": 1.0,
+      "false_refusal": 0.0,
+      "question": "How is OEE calculated?"
+    },
+    {
+      "id": "equip-02",
+      "category": "answerable",
+      "latency_s": 0.0001285076141357422,
+      "correctness": 1.0,
+      "missing": [],
+      "retrieval_hit": 1.0,
+      "reciprocal_rank": 1.0,
+      "cited": 1.0,
+      "false_refusal": 0.0,
+      "question": "What is predictive maintenance?"
+    },
+    {
+      "id": "ai-01",
+      "category": "answerable",
+      "latency_s": 9.989738464355469e-05,
+      "correctness": 1.0,
+      "missing": [],
+      "retrieval_hit": 1.0,
+      "reciprocal_rank": 0.5,
+      "cited": 1.0,
+      "false_refusal": 0.0,
+      "question": "What is holistic lithography?"
+    },
+    {
+      "id": "none-01",
+      "category": "unanswerable",
+      "latency_s": 0.00011658668518066406,
+      "refusal": 0.0,
+      "question": "What is the stock price of TSMC today?"
+    },
+    {
+      "id": "none-02",
+      "category": "unanswerable",
+      "latency_s": 0.0001125335693359375,
+      "refusal": 0.0,
+      "question": "Who won the 2022 World Cup?"
+    },
+    {
+      "id": "none-03",
+      "category": "unanswerable",
+      "latency_s": 0.000133514404296875,
+      "refusal": 0.0,
+      "question": "Give me a recipe for banana bread"
+    },
+    {
+      "id": "none-04",
+      "category": "unanswerable",
+      "latency_s": 7.772445678710938e-05,
+      "refusal": 0.0,
+      "question": "What is the capital of Australia?"
+    }
+  ]
+}

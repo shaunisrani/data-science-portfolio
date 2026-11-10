@@ -1,6 +1,7 @@
 """FabLens RAG core: load docs, chunk, hybrid retrieval (BM25 + dense FAISS), answer with Claude or Mistral."""
 import os
 import re
+import time
 from pathlib import Path
 
 from langchain_community.document_loaders import PyPDFLoader, TextLoader
@@ -36,7 +37,10 @@ def split(docs, chunk_size=600, overlap=100):
     return RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=overlap).split_documents(docs)
 
 
-STOP = set("a an the is are was what how why when does do of to in on for and or with by from as at it its which that this be can".split())
+STOP = set(("a an the is are was what how why when where who does do did of to in on for and or with by from as at it its "
+             "which that this be can i me my you your give tell explain please many much").split())
+MIN_COVERAGE = 0.5  # share of query terms that must appear in the knowledge base, else refuse
+REFUSAL = "I don't know: that isn't covered by the FabLens knowledge base."
 
 
 def tokenize(text):
@@ -62,6 +66,16 @@ class HybridRetriever:
             self.dense = FAISS.from_documents(chunks, emb).as_retriever(search_kwargs={"k": k * 2})
         except Exception as e:  # e.g., no network for model download
             print(f"[FabLens] Dense retrieval unavailable ({type(e).__name__}); using BM25 only.")
+
+    def coverage(self, query):
+        """Share of the query's content words that exist anywhere in the knowledge base (relevance gate)."""
+        toks = tokenize(query)
+        if not hasattr(self, "_vocab"):
+            self._vocab = {t for d in self.chunks for t in tokenize(d.page_content)}
+        return sum(t in self._vocab for t in toks) / len(toks) if toks else 0.0
+
+    def is_relevant(self, query):
+        return self.coverage(query) >= MIN_COVERAGE
 
     @property
     def mode(self):
@@ -113,6 +127,13 @@ def get_llm(provider):
 
 
 def answer(retriever, question):
+    t0 = time.time()
+    if not retriever.is_relevant(question):
+        from query_log import log_query
+
+        log_query(mode="rag", question=question, provider="gate", refused=True, sources=[],
+                  latency_s=round(time.time() - t0, 3))
+        return REFUSAL, []
     docs = retriever.invoke(question)
     context = format_context(docs)
     sources = sorted({d.metadata["source"] for d in docs})
@@ -120,7 +141,13 @@ def answer(retriever, question):
     if provider is None:
         # Extractive fallback: works with no API key
         text = "**No LLM API key set — showing the most relevant passages:**\n\n" + context
-        return text, sources
-    llm = get_llm(provider)
-    msg = llm.invoke([("system", SYSTEM_PROMPT + "\n\nContext:\n" + context), ("human", question)])
-    return msg.content, sources
+    else:
+        llm = get_llm(provider)
+        msg = llm.invoke([("system", SYSTEM_PROMPT + "\n\nContext:\n" + context), ("human", question)])
+        text = msg.content
+    from query_log import log_query
+
+    log_query(mode="rag", question=question, provider=provider or "extractive",
+              model=os.getenv("LLM_MODEL", DEFAULT_MODELS.get(provider, "none")),
+              retrieval=retriever.mode, sources=sources, answer_chars=len(text), latency_s=round(time.time() - t0, 3))
+    return text, sources

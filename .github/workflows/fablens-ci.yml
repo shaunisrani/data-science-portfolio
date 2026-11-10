@@ -1,0 +1,30 @@
+name: FabLens CI
+
+on:
+  push:
+    paths: ["projects/ai_llm/**", ".github/workflows/fablens-ci.yml"]
+  pull_request:
+    paths: ["projects/ai_llm/**"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projects/ai_llm/fablens
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Unit + agent tests
+        run: python -m pytest -q tests
+      - name: Retrieval quality gate (fails if hit@4 < 85%)
+        run: python eval.py --min-hit 0.85
+      - name: AI App Scorecard (fails on gate miss or regression)
+        working-directory: projects/ai_llm/ai-app-scorecard
+        run: |
+          python -m pytest -q tests
+          FABLENS_LOG=off python scorecard.py --app fablens-rag --cases cases/fablens.json --out /tmp/scorecard --baseline reports/fablens-rag/results.json

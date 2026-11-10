@@ -1,5 +1,8 @@
 """Retrieval evaluation: does the right source doc appear in the top-k chunks?
-Run: python eval.py   (reports hit@k and MRR for the current retrieval mode)."""
+Run: python eval.py [--min-hit 0.9]   (reports hit@k and MRR; exits 1 if hit@k is below the threshold, for CI)."""
+import argparse
+import sys
+
 from rag import build_index
 
 EVAL_SET = [
@@ -27,6 +30,7 @@ EVAL_SET = [
 
 
 def evaluate(k=4):
+    """Return (hit_rate, mrr, mode)."""
     r = build_index()
     hits, rr = 0, 0.0
     for q, gold in EVAL_SET:
@@ -38,7 +42,15 @@ def evaluate(k=4):
             print(f"MISS: {q} -> {srcs}")
     n = len(EVAL_SET)
     print(f"Mode: {r.mode} | {n} questions | hit@{k}: {hits / n:.0%} | MRR: {rr / n:.2f}")
+    return hits / n, rr / n, r.mode
 
 
 if __name__ == "__main__":
-    evaluate()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--min-hit", type=float, default=0.9, help="fail (exit 1) if hit@4 is below this")
+    args = ap.parse_args()
+    hit, _, _ = evaluate()
+    if hit < args.min_hit:
+        print(f"FAIL: hit@4 {hit:.0%} < required {args.min_hit:.0%}")
+        sys.exit(1)
+    print("PASS")

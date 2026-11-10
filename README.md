@@ -4,12 +4,20 @@ Selected data science projects demonstrating rigorous data analysis, statistical
 
 ## Featured Projects
 
-### FabLens: Semiconductor Yield RAG Assistant
-**LangChain retrieval-augmented generation app with cited answers**
-- Hybrid BM25 + FAISS retrieval fused with reciprocal rank fusion
-- Claude or Mistral answers only from retrieved context, citing sources; works without an API key (extractive mode)
-- 20-question retrieval evaluation (hit@4, MRR); Gradio UI with PDF upload; ready for Hugging Face Spaces
+### FabLens: Semiconductor Yield RAG Assistant + Agent
+**LangChain RAG app and tool-calling agent with cited answers**
+- Hybrid BM25 + FAISS retrieval; Claude or Mistral answers only from retrieved context
+- Agent with tested tools: yield models (Poisson, Murphy, negative binomial), dies per wafer, Cpk
+- Query logging for auditability; pytest + GitHub Actions CI with a retrieval quality gate
+- Roadmap: public demo on Hugging Face Spaces
 → `projects/ai_llm/fablens/`
+
+### AI App Scorecard
+**Reusable accuracy scorecard for a team's AI apps**
+- Scores retrieval, answer correctness, correct refusals, citations, and latency with quality gates
+- Flags regressions against a baseline; plugs into any app via an adapter or HTTP
+- Caught a real FabLens bug (0% correct refusals); after the fix, 78 → 98/100
+→ `projects/ai_llm/ai-app-scorecard/`
 
 ### League of Legends Gameplay Analysis: Wards vs. Dragons (DSC 80)
 **End-to-end data science project with modeling and deployment**
@@ -33,7 +41,8 @@ Selected data science projects demonstrating rigorous data analysis, statistical
 → `projects/sensing_time_series/sensor-analysis/`
 
 ## Skills Demonstrated
-- RAG, LangChain, FAISS, Claude API, Gradio
+- RAG, LangChain agents, FAISS, Claude API, Mistral AI, Gradio
+- AI evaluation, quality gates, CI (pytest, GitHub Actions)
 - Python, pandas, NumPy, scikit-learn, Jupyter
 - Data cleaning, validation, and missingness analysis
 - Exploratory data analysis and statistical hypothesis testing

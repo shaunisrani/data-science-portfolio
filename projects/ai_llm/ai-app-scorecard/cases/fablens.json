@@ -1,0 +1,29 @@
+{
+  "suite": "FabLens semiconductor Q&A",
+  "cases": [
+    {"id": "yield-01", "category": "answerable", "question": "What does the alpha parameter mean in the Stapper yield model?", "expected_sources": ["01_yield_basics.md"], "must_include": ["clustering"]},
+    {"id": "yield-02", "category": "answerable", "question": "Why are large dies more sensitive to defect density?", "expected_sources": ["01_yield_basics.md"], "must_include": ["area"]},
+    {"id": "yield-03", "category": "answerable", "question": "What is the Poisson yield formula?", "expected_sources": ["01_yield_basics.md"], "must_include": ["exp", "D0"]},
+    {"id": "litho-01", "category": "answerable", "question": "What wavelength does EUV lithography use?", "expected_sources": ["02_lithography_euv.md"], "must_include": ["13.5"]},
+    {"id": "litho-02", "category": "answerable", "question": "How is EUV light generated?", "expected_sources": ["02_lithography_euv.md"], "must_include": ["tin", "plasma"]},
+    {"id": "litho-03", "category": "answerable", "question": "What numerical aperture does High-NA EUV use?", "expected_sources": ["02_lithography_euv.md"], "must_include": ["0.55"]},
+    {"id": "litho-04", "category": "answerable", "question": "Why does EUV use mirrors instead of lenses?", "expected_sources": ["02_lithography_euv.md"], "must_include": ["absorb"]},
+    {"id": "metro-01", "category": "answerable", "question": "What is a focus-exposure matrix used for?", "expected_sources": ["03_overlay_cd_metrology.md"], "must_include": ["process window"]},
+    {"id": "metro-02", "category": "answerable", "question": "What is overlay error?", "expected_sources": ["03_overlay_cd_metrology.md"], "must_include": ["align"]},
+    {"id": "defect-01", "category": "answerable", "question": "What are stochastic defects in EUV?", "expected_sources": ["04_defect_inspection.md"], "must_include": ["photons"]},
+    {"id": "defect-02", "category": "answerable", "question": "What is a killer defect?", "expected_sources": ["04_defect_inspection.md"], "must_include": ["fail"]},
+    {"id": "wafer-01", "category": "answerable", "question": "What wafer map pattern points to a CMP problem?", "expected_sources": ["05_wafer_maps.md"], "must_include": ["scratch"]},
+    {"id": "wafer-02", "category": "answerable", "question": "How many wafer maps are in WM-811K?", "expected_sources": ["05_wafer_maps.md"], "must_include": ["811"]},
+    {"id": "spc-01", "category": "answerable", "question": "How is Cpk calculated?", "expected_sources": ["06_spc_fdc.md"], "must_include": ["USL", "LSL"]},
+    {"id": "spc-02", "category": "answerable", "question": "What is virtual metrology?", "expected_sources": ["06_spc_fdc.md"], "must_include": ["sensor"]},
+    {"id": "equip-01", "category": "answerable", "question": "How is OEE calculated?", "expected_sources": ["07_equipment_health.md"], "must_include": ["availability", "performance", "quality"]},
+    {"id": "equip-02", "category": "answerable", "question": "What is predictive maintenance?", "expected_sources": ["07_equipment_health.md"], "must_include": ["sensor"]},
+    {"id": "ai-01", "category": "answerable", "question": "What is holistic lithography?", "expected_sources": ["08_ai_in_fabs.md"], "must_include": ["metrology", "scanner"]},
+    {"id": "none-01", "category": "unanswerable", "question": "What is the stock price of TSMC today?"},
+    {"id": "none-02", "category": "unanswerable", "question": "Who won the 2022 World Cup?"},
+    {"id": "none-03", "category": "unanswerable", "question": "Give me a recipe for banana bread"},
+    {"id": "none-04", "category": "unanswerable", "question": "What is the capital of Australia?"},
+    {"id": "calc-01", "category": "calculation", "question": "What is the Poisson yield for a 2 cm^2 die at 0.3 defects per cm^2?", "must_include": ["54.9%"]},
+    {"id": "calc-02", "category": "calculation", "question": "A process has mean 10.0, std 0.4, spec 8.5 to 11.5. What is Cpk?", "must_include": ["1.25"]}
+  ]
+}
