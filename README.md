@@ -7,7 +7,7 @@ Selected data science projects demonstrating rigorous data analysis, statistical
 ### FabLens: Semiconductor Yield RAG Assistant
 **LangChain retrieval-augmented generation app with cited answers**
 - Hybrid BM25 + FAISS retrieval fused with reciprocal rank fusion
-- Claude Haiku answers only from retrieved context, citing sources; works without an API key (extractive mode)
+- Claude or Mistral answers only from retrieved context, citing sources; works without an API key (extractive mode)
 - 20-question retrieval evaluation (hit@4, MRR); Gradio UI with PDF upload; ready for Hugging Face Spaces
 → `projects/ai_llm/fablens/`
 

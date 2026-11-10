@@ -1,4 +1,4 @@
-"""FabLens RAG core: load docs, chunk, hybrid retrieval (BM25 + dense FAISS), answer with Claude."""
+"""FabLens RAG core: load docs, chunk, hybrid retrieval (BM25 + dense FAISS), answer with Claude or Mistral."""
 import os
 import re
 from pathlib import Path
@@ -10,7 +10,8 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 DOCS_DIR = Path(__file__).parent / "docs"
 EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-LLM_MODEL = os.getenv("LLM_MODEL", "claude-haiku-4-5")
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "").lower()  # "anthropic", "mistral", or "" = auto
+DEFAULT_MODELS = {"anthropic": "claude-haiku-4-5", "mistral": "mistral-small-latest"}
 
 SYSTEM_PROMPT = (
     "You are FabLens, an assistant for semiconductor manufacturing and yield engineering. "
@@ -89,16 +90,37 @@ def format_context(docs):
     return "\n\n".join(f"[{i}] ({d.metadata['source']})\n{d.page_content}" for i, d in enumerate(docs, 1))
 
 
+def pick_provider():
+    """Choose the LLM provider: explicit LLM_PROVIDER, else whichever API key is set."""
+    if LLM_PROVIDER in DEFAULT_MODELS:
+        return LLM_PROVIDER
+    if os.getenv("MISTRAL_API_KEY"):
+        return "mistral"
+    if os.getenv("ANTHROPIC_API_KEY"):
+        return "anthropic"
+    return None
+
+
+def get_llm(provider):
+    model = os.getenv("LLM_MODEL", DEFAULT_MODELS[provider])
+    if provider == "mistral":
+        from langchain_mistralai import ChatMistralAI
+
+        return ChatMistralAI(model=model, temperature=0, max_tokens=600)
+    from langchain_anthropic import ChatAnthropic
+
+    return ChatAnthropic(model=model, temperature=0, max_tokens=600)
+
+
 def answer(retriever, question):
     docs = retriever.invoke(question)
     context = format_context(docs)
     sources = sorted({d.metadata["source"] for d in docs})
-    if not os.getenv("ANTHROPIC_API_KEY"):
+    provider = pick_provider()
+    if provider is None:
         # Extractive fallback: works with no API key
-        text = "**No ANTHROPIC_API_KEY set — showing the most relevant passages:**\n\n" + context
+        text = "**No LLM API key set — showing the most relevant passages:**\n\n" + context
         return text, sources
-    from langchain_anthropic import ChatAnthropic
-
-    llm = ChatAnthropic(model=LLM_MODEL, temperature=0, max_tokens=600)
+    llm = get_llm(provider)
     msg = llm.invoke([("system", SYSTEM_PROMPT + "\n\nContext:\n" + context), ("human", question)])
     return msg.content, sources
