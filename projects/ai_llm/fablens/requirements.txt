@@ -5,6 +5,8 @@ langchain-text-splitters
 langchain-huggingface
 langchain-anthropic
 langchain-mistralai
+langchain-openai
+semantic-kernel
 sentence-transformers
 faiss-cpu
 rank_bm25

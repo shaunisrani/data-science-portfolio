@@ -32,11 +32,15 @@ docs (MD/PDF) → chunk (600 chars, 100 overlap)
 
 The agent is told never to do the math itself — numbers always come from a tested tool.
 
+**Two agent frameworks, same tools:**
+- `agent.py`: LangChain tool-calling agent (Claude, Mistral, or Azure OpenAI)
+- `sk_agent.py`: Microsoft **Semantic Kernel** agent on **Azure OpenAI (Azure AI Foundry)**, with the tools exposed as a Semantic Kernel plugin
+
 ## Design choices
 
 - **Hybrid retrieval**: BM25 catches exact terms (Cpk, WM-811K); embeddings catch meaning; merged with reciprocal rank fusion.
 - **Grounded answers**: the LLM answers only from retrieved context and says "I don't know" otherwise.
-- **Swappable LLM provider**: set `MISTRAL_API_KEY` or `ANTHROPIC_API_KEY` (or force one with `LLM_PROVIDER=mistral|anthropic`).
+- **Swappable LLM provider**: Azure OpenAI (`AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_DEPLOYMENT`), Mistral (`MISTRAL_API_KEY`), or Claude (`ANTHROPIC_API_KEY`); force one with `LLM_PROVIDER=azure|mistral|anthropic`.
 - **Works without an API key**: RAG mode falls back to showing the most relevant passages.
 - **Bring your own docs**: upload PDFs or notes in the UI.
 
@@ -50,7 +54,7 @@ Every RAG and agent query is appended to `logs/queries.jsonl`: timestamp, mode, 
 ## Testing and CI
 
 ```
-python -m pytest -q tests        # tool math, agent wiring (scripted fake LLM), retrieval gate
+python -m pytest -q tests        # tool math, LangChain + Semantic Kernel agents, Azure provider, retrieval gate
 python eval.py --min-hit 0.85    # 20-question retrieval eval; exits 1 below the threshold
 ```
 
@@ -75,6 +79,6 @@ Next step is a public demo on Hugging Face Spaces. The YAML header at the top of
 Other planned work: score FabLens with the [AI App Scorecard](../ai-app-scorecard/) on every release, and add an LLM-as-judge faithfulness check.
 
 ## Tech
-Python · LangChain (RAG + agents) · FAISS · BM25 · sentence-transformers · Claude API · Mistral AI · Gradio · pytest · GitHub Actions
+Python · LangChain (RAG + agents) · Semantic Kernel · Azure OpenAI · FAISS · BM25 · sentence-transformers · Claude API · Mistral AI · Gradio · pytest · GitHub Actions
 
 Knowledge base documents in `docs/` are original summaries written for this project.
