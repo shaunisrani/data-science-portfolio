@@ -4,6 +4,13 @@ Selected data science projects demonstrating rigorous data analysis, statistical
 
 ## Featured Projects
 
+### FabLens: Semiconductor Yield RAG Assistant
+**LangChain retrieval-augmented generation app with cited answers**
+- Hybrid BM25 + FAISS retrieval fused with reciprocal rank fusion
+- Claude Haiku answers only from retrieved context, citing sources; works without an API key (extractive mode)
+- 20-question retrieval evaluation (hit@4, MRR); Gradio UI with PDF upload; ready for Hugging Face Spaces
+→ `projects/ai_llm/fablens/`
+
 ### League of Legends Gameplay Analysis: Wards vs. Dragons (DSC 80)
 **End-to-end data science project with modeling and deployment**
 - Data engineering and validation with explicit missingness analysis
@@ -26,6 +33,7 @@ Selected data science projects demonstrating rigorous data analysis, statistical
 → `projects/sensing_time_series/sensor-analysis/`
 
 ## Skills Demonstrated
+- RAG, LangChain, FAISS, Claude API, Gradio
 - Python, pandas, NumPy, scikit-learn, Jupyter
 - Data cleaning, validation, and missingness analysis
 - Exploratory data analysis and statistical hypothesis testing
